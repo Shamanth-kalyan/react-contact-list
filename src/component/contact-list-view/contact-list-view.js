@@ -7,7 +7,7 @@ export function ContactListView(props) {
         props.contactList.map((contact) => (
           <div className="contacts-list" key={contact.id}>
             <div className="contact-image">
-              <img src={contact.avatar} alt="contact image" />
+              <img src={contact.avatar} alt="contact avatar" />
             </div>
             <div className="contact-detail">
               <span>

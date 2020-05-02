@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,7 +7,7 @@ import { faList, faTh, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ContactListView } from '../contact-list-view/contact-list-view';
 import { ContactGridView } from '../contact-grid-view/contact-grid-view';
 
-export function ContactList(props) {
+export function ContactList() {
   const [listView, setListView] = useState(true);
   const [contactList, setContactList] = useState([]);
 
@@ -19,10 +19,9 @@ export function ContactList(props) {
     fetch('https://reqres.in/api/users?page=1')
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         let searchList;
         if (searchString) {
-          searchList = contactList.filter(
+          searchList = res.data.filter(
             (contact) =>
               contact.first_name
                 .toLowerCase()
@@ -35,7 +34,6 @@ export function ContactList(props) {
         } else {
           searchList = res.data;
         }
-
         setContactList(searchList);
       });
   }
